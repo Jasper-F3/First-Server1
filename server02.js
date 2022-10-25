@@ -1,10 +1,12 @@
+import cors from "cors";
 const { json } = require('express');
-const express = require('express')
+const express = require('express');
 
 const app = express();
 
-app.use(express.urlencoded({extended: true}))
-app.use(express.json())
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(cors());
 
 app.use((request, response, next) => {
 
