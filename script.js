@@ -3,12 +3,22 @@
 async function getDados() {
 
     try{
+        let nome = document.querySelector("#nome").value
+        let cidade = document.querySelector("#cidade").value
+        let estado = document.querySelector("#estado").value
 
-        const responseData = await axios.get('http://localhost:3000/')
+        const info = {
+            nome,
+            cidade,
+            estado,
+        }
+
+        const responseData = await axios.post('http://localhost:3000/',info)
 
         const dados = responseData.data;
+        console.log(dados.nome + " " + dados.local)
 
-        document.querySelector('#dados').innerHTML = dados;
+        document.querySelector("#saida").innerHTML = `Hola! ${dados.nome} de ${dados.local}`;
 
 
     }catch (error){
@@ -16,4 +26,12 @@ async function getDados() {
     }
 }
 
-getDados();
+//getDados();
+
+document.querySelector("#enviar").addEventListener('click', getDados)
+
+document.querySelector("#send").addEventListener("key-up", (c) => {
+    if (c == 13) {
+      getDados();
+    }
+  });

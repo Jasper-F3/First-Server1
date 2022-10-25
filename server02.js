@@ -1,6 +1,5 @@
 import cors from "cors";
-const { json } = require('express');
-const express = require('express');
+import express from "express";
 
 const app = express();
 
@@ -11,12 +10,15 @@ app.use(cors());
 app.use((request, response, next) => {
 
     //const info = request.headers.info;
-    const num = request.headers.num;
+    //const num = request.headers.num;
 
-    const nome = request.query.nome;
-
+    const nome = request.body.nome;
     const cidade = request.body.cidade;
     const estado = request.body.estado;
+
+    //Acesso ao BD
+    //Processa
+    //DEVOLVE
 
     const dados = {
         nome,
@@ -24,6 +26,9 @@ app.use((request, response, next) => {
 
        
     }
+
+    
+
     response.send(JSON.stringify(dados))
 
 
